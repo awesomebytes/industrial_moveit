@@ -435,7 +435,7 @@ bool StompPlanner::getSeedParameters(Eigen::MatrixXd& parameters) const
         const std::string end_eff_frame = gc.position_constraints.front().link_name;
         std::map<std::string, double> fixed_joints = getFixedJointsMap(urdf_param, base_frame, end_eff_frame, group, request_.start_state.joint_state);
         std::vector<size_t> joints_bijection = getBijection(urdf_param, base_frame, end_eff_frame, group);
-        TRAC_IK::TRAC_IK tracik_solver(base_frame, end_eff_frame, urdf_param, timeout, eps, fixed_joints);
+        TRAC_IK::TRAC_IK tracik_solver(base_frame, end_eff_frame, urdf_param, timeout, eps);
         if(ikFromCartesianConstraints(gc.position_constraints.front(), gc.orientation_constraints.front(),
                                       group, goal, tracik_solver))
         {
@@ -594,7 +594,7 @@ bool StompPlanner::extractSeedCartesianTrajectory(const moveit_msgs::MotionPlanR
   const std::string end_eff_frame = constraints[0].position_constraints[0].link_name;
 
   const std::map<std::string, double> fixed_joints = getFixedJointsMap(urdf_param, base_frame, end_eff_frame, joint_group, request_.start_state.joint_state);
-  TRAC_IK::TRAC_IK tracik_solver(base_frame, end_eff_frame, urdf_param, timeout, eps, fixed_joints);
+  TRAC_IK::TRAC_IK tracik_solver(base_frame, end_eff_frame, urdf_param, timeout, eps);
   const std::vector<size_t> joints_bijection = getBijection(urdf_param, base_frame, end_eff_frame, joint_group);
 
   Eigen::VectorXd start_state;
@@ -782,7 +782,7 @@ bool StompPlanner::getStartAndGoal(Eigen::VectorXd& start, Eigen::VectorXd& goal
         const std::string end_eff_frame = gc.position_constraints.front().link_name;
         std::map<std::string, double> fixed_joints = getFixedJointsMap(urdf_param, base_frame, end_eff_frame, joint_group, request_.start_state.joint_state);
         std::vector<size_t> joints_bijection = getBijection(urdf_param, base_frame, end_eff_frame, joint_group);
-        TRAC_IK::TRAC_IK tracik_solver(base_frame, end_eff_frame, urdf_param, timeout, eps, fixed_joints);
+        TRAC_IK::TRAC_IK tracik_solver(base_frame, end_eff_frame, urdf_param, timeout, eps);
         if(ikFromCartesianConstraints(gc.position_constraints.front(), gc.orientation_constraints.front(),
                                       joint_group, goal, tracik_solver))
         {
