@@ -34,7 +34,7 @@
 #include <pluginlib/class_list_macros.h>
 #include <XmlRpcException.h>
 #include <moveit_msgs/Constraints.h>
-#include <stomp_moveit/rosconsolecolours.h>
+#include <stomp_moveit/rosconsole_extras.h>
 #include <trac_ik/trac_ik.hpp>
 
 
